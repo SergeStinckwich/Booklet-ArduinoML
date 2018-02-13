@@ -14,7 +14,7 @@ deploy:
 - provider: bintray
   file: .bintray.json
   on:
-    repo: SquareBracketAssociates/Booklet-DataFrame
+    repo: SergeStinckwich/Booklet-ArduinoML
   skip_cleanup: true
   user: ducasse
   key:
