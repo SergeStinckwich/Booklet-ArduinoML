@@ -4,6 +4,10 @@
 
 ${inputFile:Chapters/Chapter1/chapter1.pillar}$
 
-!!Code generation from models
+!!Embedded DSL for ArduinoML
 
 ${inputFile:Chapters/Chapter2/chapter2.pillar}$
+
+!!Code generation from models
+
+${inputFile:Chapters/Chapter3/chapter3.pillar}$
