@@ -4,7 +4,7 @@
 [travis]: https://travis-ci.org/SergeStinckwich/Booklet-ArduinoML
 [badge]: https://travis-ci.org/SergeStinckwich/Booklet-ArduinoML.svg?branch=master
 
-The result from the latest successful Travis build can be found [on Bintray (PDF)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=dataframe-wip.pdf).
+The result from the latest successful Travis build can be found [on Bintray (PDF)](https://bintray.com/ummisco/wip/download_file?file_path=ArduinoML-wip.pdf).
 
 ## To contribute
 
