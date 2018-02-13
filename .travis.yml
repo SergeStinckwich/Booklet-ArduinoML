@@ -1,28 +1,25 @@
 sudo: required
 services:
 - docker
-
 before_install:
 - docker pull dpollet/texlive:pillar
-
 script: |
   docker run --tty --rm --volume $PWD:/work dpollet/texlive:pillar bash -c "\
     wget --quiet --output-document=- 'https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh' | bash \
     && make spiralbook "
-
 deploy:
 - provider: bintray
-  file: .bintray.json
+  file: ".bintray.json"
   on:
     repo: SergeStinckwich/Booklet-ArduinoML
   skip_cleanup: true
   user: sergestinckwich
   key:
-    secure: VygifH8UHzScr2XlTdDFaxO4zVN8pk6TN4dx5tqMCehG14Ath1kk2ItUSo0ha/uz/I3FHZHVUhSydhCMRJUjK1FeFlDobWcOqJ6UEOwoI1GXrs7uNB1v2Htbi4wdnvaC7Oj3Go7cCENUNPqAXeGGWPHPEnX35+0AeXssZPEyv88f6cSAVd4mxCYM6rvxknhyYooodLhFBjZsgdO5ZYKbHU8iiylQNsh3pjvRvZzMeRED3nHMlbHhZXqKJzn+wuiq+loWqV3AFBmxoRuxjU8PU7f+LV8oYvamW6rU3hAPs5SFKqD7aqbAEH6EK3/stjSJGaHz4TzQq0y0Y2PGyLNLJHsgovRhSDKvSzc1iDsNBoe5HeN32TeqS4Kjd2EQrN1n+wMlPHr2Ed5EzSRYfONXtW0HlvYOt5ojSlKIMgAZsBo6hGwrZ330bduhBlNMOgMnYvVh1893dLIQ1F02+TCKIq5I7IO+UafE/MJj3z8i0rcBkMo7Tw8C4hPeIulP4Xfci86wJzG0uQ63FFRwOxMSxYd8qtjJU8jV8swJotfcwgEAwYUcSu2sRfOur0BObW8jqR1Ba3JGAQ0hfQyO0JKalP0MPdQ9QAcMToyoQ13TdtSK+AlhCUNcZTB2a5oXTUYBkYPKmhB5BJIxM7hfCUzYK8vjTxKS1QjbfEehS7jCMKU=
+    secure: IIab640B0X3Z2JqRFLcK8v2B9MNuE61J3SoJh/ix2APEu7nFNp7FrsWBpNR+NMGvih9aT6RxRSz2W4WmUm1Tw/K2BAqoXG1Bztm8/Mvg7hQQnqAVNFPXSQSyk/eqtCJA7eSWhnweXUr0d21J6CzO6lkYJbXUXFGwgqESWp8PwYbbys5sN2YMPaB9Q7XbdFff5O/q9SAO5SOQrmxA2pzonGPN8n7Np08AXx532J8ZNuLifaWBS1VBMcMo31ySGyu8lh0qQcbfilePZx2GqXIQiB+X7YkpORFT4IULS2xHpc3Dz3lzpBsPvsK69qEugJMF8n5oL1RN0UCpqCzzKPP2VyTPg/qrOodKwHgPjnk7xonLXniJj02C0avFXb+jbuMwBgTfS1OdQnzzZvvfT3mtL2/lQYvLioIp9knRQK5AqnVvF0O0sxW1B1LM8vk3wxlFSrHNlwCHrZe4N/9m0M9eVHXmMjbRUIg1FKN+8ynXab1wAztMojmBIbg3qcc3rbEbaPQn2mg5bdTBM801yd10n4ZtyNLc3KuzxI13eVuY8aY2PDn7wsjFC8wkyi4FoFP18m9FD7E42IYzp4KlhspqSda/HkngF77J0S3RBYV3SqU0k0e2CmR3f31A27SioV/OryheS+5TYzYjp5N81WCNlJJ/yDakUrpflQUk+3SD/o4=
 - provider: releases
   file: build/book.spiral.pdf
   on:
     tags: true
   skip_cleanup: true
-  api_key:
-    secure: pRfu3fr35BzqQDi1ul0SubPSwO8zcyIidqLRZPz3XIrH4qoy1Zgnq785dmB7ziNQqH+VJyh7askSFY3JLxL0d4P0eUgj2ZDIOhJsUQQ/ihevOBWbxlMOoEPjQfzA11l8WrNCQ566KrcYiISRi7bCg698kPTWSRwOmmvqXOJe5zGkuUbVmMNUV2oxaNV4JC8kVyVWHYy0nNMLEX/hzRZRh1+8K34/ds+fZ7irLrbDWMbKGHCyuLCSqv+zJJdu99nWLTclrCxFzK4DEHaMlFiO7wkUpyQLwZ38EDnb3E7iv045jSqCx3XB+DMRG1Da2/9BIXl0mho5ELdEvfGVAbjI2no5FWd0H1cs4/banAePCFnM7ZscJBaPWgVajB7EzrcADJUoxpmU6+6n1aIC3CnjscfAHqSAKGv8CO/Jh+Uirc8ATRpSqa73f2Nnj9tRCqwCOnFOCEzu0w5l3Ppz2Qpif04P+QbebZehSVaBJ4W01R2i8Rac3IuZDhZVaek1X24HFxUOd/rvHpbhz8eeANdnsWCTkAm+0sD+iKsWKICRMxFZfCK/SPldAcjXZsOsEMTqfx7ZWyCc7GeesQWcmW+z3shziyQd9tdeArJWLwacly3hH3WeyuUD5JyPF9klvDBtHgTVajdU4yp+3oXsrtTmetnBz+RESxQGdLgZRlQBQog=
+
+
