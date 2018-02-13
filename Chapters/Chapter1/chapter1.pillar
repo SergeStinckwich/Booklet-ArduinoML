@@ -1,12 +1,15 @@
 
 *ArduinoML>https://github.com/mosser/ArduinoML-kernel* is a very simple meta-model that allows to represent programs on top of Arduino Boards. The meta-model provided the following concepts:
 
-- App
-- Brick
-- State
-- Transition
-- Action
-- Sensor
-- Actuator
+- ==App==
+- ==Brick==
+- ==State==
+- ==Transition==
+- ==Action==
+- ==Sensor== represent Arduino sensors like a Button. A sensor has a name and is bound to a pin.
+- ==Actuator==
 
 +ArduinoML meta-model>figures/ArduinoML.jpg|width=60|label=arduinoml+
+
+We represent this meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class.
+
