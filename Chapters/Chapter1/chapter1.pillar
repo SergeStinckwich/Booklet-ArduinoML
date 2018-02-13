@@ -1,5 +1,5 @@
 
-*ArduinoML>https://github.com/mosser/ArduinoML-kernel* is a very simple meta-model that allows to represent programs on top of Arduino Boards. The meta-model provided the following concepts:
+*ArduinoML>https://github.com/mosser/ArduinoML-kernel* is a very simple meta-model that allows to represent programs on top of Arduino boards. The meta-model provided the following concepts:
 
 - ==App==
 - ==Brick==
@@ -11,5 +11,16 @@
 
 +ArduinoML meta-model>figures/ArduinoML.jpg|width=60|label=arduinoml+
 
-We represent this meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class.
+There are many implementations of ArduinoML in various programming languages (Java, Python, ...) or workbenches (MPS, XText, ...). *Pharo version of Arduino>https://github.com/mosser/ArduinoML-kernel/tree/master/embeddeds/pharo* has been done by Serge Stinckwich. In order to load, ArduinoML support for Pharo, please execute the following code snippet in a fresh Pharo 6.1 image :
+
+[[[language=smmalltalk
+Metacello new
+    baseline: 'ArduinoML';
+    repository: 'github://SergeStinckwich/ArduinoML-kernel/embeddeds/pharo';
+    load
+]]]
+
+We represent this meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class. We AML (ArduinoML) as a prefix for all classes.
+
+
 
