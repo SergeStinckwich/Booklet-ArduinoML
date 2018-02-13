@@ -1,0 +1,9 @@
+!ArduinoML on Pharo
+
+!!ArduinoML meta-model
+
+${inputFile:Chapters/Chapter1/chapter1.pillar}$
+
+!!Code generation from models
+
+${inputFile:Chapters/Chapter2/chapter2.pillar}$

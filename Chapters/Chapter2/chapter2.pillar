@@ -1,0 +1,32 @@
+In order to generate *Wiring>https://en.wikipedia.org/wiki/Wiring_(development_platform)* code from an
+ArduinoML model, we are using here the Visitor Pattern.
+This pattern is a way of separating an algorithm from an object structure on
+which it operates.
+
+In order to allow visits on ArduinoML model, we need to add an accept: aVisitor method to each
+classes deriving from the root class : AMLEntity
+
+For example : 
+
+[[[
+AMLAction>>accept: aVisitor
+	^ aVisitor visitAction: self
+]]]
+
+It means that each Visitor an an ArduinoML model will have to implement the
+visitXXX actions where XXX is one of class AMLXXX.
+
+For the AMLEntity class we implement an accept: method who is an abstract
+method, because there is no objects of this class.
+
+[[[
+AMLEntity>>accept: aVisitor
+	self subclassResponsibility
+]]]
+
+Let's start to implement a visitor to generate Wiring code from ArduinoML
+model. We will implement a class named AMLArduinoCodeVisitor. This visit will
+traverse an ArduinoML and generate a stream.
+
+Only 3 visiting methods are needed : 
+
