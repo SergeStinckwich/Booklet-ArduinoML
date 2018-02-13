@@ -1,4 +1,4 @@
-# A booklet on the ArduinoML with Pharo
+# A booklet on ArduinoML with Pharo
 [![Build status][badge]][travis]
 
 [travis]: https://travis-ci.org/SergeStinckwich/Booklet-ArduinoML
