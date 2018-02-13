@@ -1,9 +1,8 @@
-# A booklet on the DataFrame
-
+# A booklet on the ArduinoML with Pharo
 [![Build status][badge]][travis]
 
-[travis]: https://travis-ci.org/SquareBracketAssociates/Booklet-DataFrame
-[badge]: https://travis-ci.org/SquareBracketAssociates/Booklet-DataFrame.svg?branch=master
+[travis]: https://travis-ci.org/SergeStinckwich/Booklet-ArduinoML
+[badge]: https://travis-ci.org/SergeStinckwich/Booklet-ArduinoML.svg?branch=master
 
 The result from the latest successful Travis build can be found [on Bintray (PDF)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=dataframe-wip.pdf).
 
