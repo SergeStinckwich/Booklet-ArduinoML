@@ -1,3 +1,12 @@
 
+*ArduinoML>https://github.com/mosser/ArduinoML-kernel* is a very simple meta-model that allows to represent programs on top of Arduino Boards. The meta-model provided the following concepts:
 
-To be written ...
+- App
+- Brick
+- State
+- Transition
+- Action
+- Sensor
+- Actuator
+
++ArduinoML meta-model>figures/ArduinoML.png|width=60|label=arduinoml+
