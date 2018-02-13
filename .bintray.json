@@ -1,13 +1,13 @@
 {
     "package": {
-        "name": "booklet-DataFrame",
+        "name": "booklet-ArduinoML",
         "repo": "wip",
         "subject": "squarebracketassociates",
         "desc": "Smacc",
         "licenses": ["MIT"],
-        "website_url": "https://github.com/SquareBracketAssociates/Booklet-DataFrame",
-        "issue_tracker_url": "https://github.com/SquareBracketAssociates/Booklet-DataFrame/issues",
-        "vcs_url": "https://github.com/SquareBracketAssociates/Booklet-DataFrame.git",
+        "website_url": "https://github.com/SergeStinckwich/Booklet-ArduinoML",
+        "issue_tracker_url": "https://github.com/SergeStinckwich/Booklet-ArduinoML/issues",
+        "vcs_url": "https://github.com/SergeStinckwich/Booklet-ArduinoML.git",
         "labels": ["work-in-progress"]
     },
 
@@ -19,7 +19,7 @@
     "files": [
         {
             "includePattern": "build/book.spiral.pdf",
-            "uploadPattern": "dataframe-wip.pdf",
+            "uploadPattern": "ArduinoML-wip.pdf",
             "matrixParams": { "override": 1 }
         }
     ],
