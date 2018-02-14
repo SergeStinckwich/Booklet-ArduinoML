@@ -1,8 +1,9 @@
-In order to simplify our task, we decide to build an embedded DSL instead of bulding a whole Parser.
+!!! Concrete Syntax
+In order to simplify our task, we decide to build an embedded DSL instead of building a whole Parser.
 
-We use the facilities of Pharo, in order to build a declarative API. The template of an ArduinoML is as follows :
+We reuse as much as possible the facilities provide by Pharo (like dynamic arrays and class extensions), in order to build a declarative API. The template to build an ArduinoML program is as follows.
 
-[[[
+[[[language=smalltalk
 #youAppName arduinoApp
     bricks:
         {
@@ -17,4 +18,23 @@ We use the facilities of Pharo, in order to build a declarative API. The templat
         ...
         }
 ]]]
+
+You need to provide the name of your application (#youAppName), a list of bricks, states and transitions. These lists can be written in whatever order you want.
+
+In order to describe bricks (sensors or actuactors), you need the name of the brick and the bounding pin. For example, if you want to plug the button named ==button1== to pin number 9, you wrote: 
+
+[[[language=smalltalk
+#button1 sensorOnPin: 9.
+]]]
+
+There is a also a syntax for actuators:
+[[[language=smalltalk
+#greenLed actuatorOnPin: 13.
+]]]
+
+Beware: at the moment, no control is done for the name of bricks and their bounding pins. The same name or pins can be reused many times.
+
+!!! How to build a model
+
+The ==build== method create an ArduinoML model from an instance of the DSL.
 

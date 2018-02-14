@@ -25,11 +25,11 @@ AMLEntity>>accept: aVisitor
 
 Let's start to implement a visitor to generate Wiring code from ArduinoML
 model. We will implement a class named ==AMLArduinoCodeVisitor==. This visit will
-traverse an ArduinoML and generate a stream.
+traverse an ArduinoML and generate a stream${footnote:We use Stream instead of String, because this is more efficient to use streams to concatenate strings.}$.
 
-Only 2 visiting methods are needed.
+Only 2 visiting methods are needed : ==visitApp:== and ==visitState:==.
 
-For each brick of an AMLApp, we generate the code of a global variable definition, then we generate the code of the setup with formatSetup: and for each states, the visitor visit corresponding objects. Finally, the code of the loop is generated.
+For each brick of an ==AMLApp==, we generate the code of a global variable definition, then we generate the code of the setup with ==formatSetup:== and for each states, the visitor visit corresponding objects. Finally, the code of the loop is generated.
 
 [[[language=smalltalk
 visitApp: anAMLApp
@@ -62,7 +62,6 @@ AMLArduinoCodeVisitor>>formatGlobalVariable: anAMLBrick
 	stream nextPutAll: (anAMLBrick pin) asString.
 	stream nextPutAll: ';'
 ]]]
-
 
 for example :
 
