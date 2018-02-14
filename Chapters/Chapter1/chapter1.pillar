@@ -1,26 +1,74 @@
 
-*ArduinoML>https://github.com/mosser/ArduinoML-kernel* is a very simple meta-model that allows to represent programs on top of Arduino boards. The meta-model provided the following concepts:
+*ArduinoML>https://github.com/mosser/ArduinoML-kernel* is a very simple meta-model that allows to represent programs on top of Arduino boards.
 
-- ==App==
-- ==Brick==
-- ==State==
-- ==Transition==
-- ==Action==
-- ==Sensor== represent Arduino sensors like a Button. A sensor has a name and is bound to a pin.
-- ==Actuator==
+ArduinoML is composed of two distincts parts: ''structural concerns'' that represent hardware parts like bricks (sensors or actuactors) and ''behavioral concerns'' that describes an application as a state machine. The meta-model provided the following concepts:
 
+- ==App== describe a whole Arduino application. An app is made of several bricks and defined many states.
+- ==State== is a state of the state machine. A state "on" define for example when a led is switched on
+- ==Transition== links two state. Going from one state to another is triggered by the value of a sensor.
+- ==Action== is what is done when a transition is triggered.
+- ==Brick== are Arduino sensors or actuators.
+- ==Sensor== represent Arduino sensors like a button. A sensor has a name and is bound to a pin.
+- ==Actuator== represent Arduino actuators like a led. An actuator has a name and is bound to a pin.
+
+Structural concerns appears in orange and behaviorial concerns in green in the following figure.
 +ArduinoML meta-model>figures/ArduinoML.jpg|width=60|label=arduinoml+
+
 
 There are many implementations of ArduinoML in various programming languages (Java, Python, ...) or workbenches (MPS, XText, ...). *Pharo version of Arduino>https://github.com/mosser/ArduinoML-kernel/tree/master/embeddeds/pharo* has been done by Serge Stinckwich. In order to load, ArduinoML support for Pharo, please execute the following code snippet in a fresh Pharo 6.1 image :
 
-[[[language=smmalltalk
+[[[language=smalltalk
 Metacello new
     baseline: 'ArduinoML';
     repository: 'github://SergeStinckwich/ArduinoML-kernel/embeddeds/pharo';
     load
 ]]]
 
-We represent this meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class. We AML (ArduinoML) as a prefix for all classes.
+Arduino's Pharo version is composed of three parts: classes that represent the meta-model entities, an embedded domain-specific language that allows you to build Arduino programs (see chapter 2) and finally a Wiring code generator (see chapter 3).
+
+We represent the meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class. We use AML (ArduinoML) as a prefix for all classes in order to avoid class clashes with other Pharo classes.
 
 
+This is a complete example of generating Wiring code for a specific Arduino application.
+Open a Pharo Playground and type: 
+[[[language=smalltalk
+| myApp result |
+myApp := #myApp arduinoApp
+    bricks:
+        {#button sensorOnPin: 9.
+        #led actuatorOnPin: 12};
+    states:{
+        #offline stateDo: {#led setTo: #LOW}.
+        #online stateDo: {#led setTo: #HIGH}};
+    transitions:{
+        #offline to: #online when: (#button is: #HIGH).
+        #online to: #offline when: (#button is: #LOW).
+        };
+    build.
+result := AMLArduinoCodeVisitor new visitApp: myApp.
+result contents
+]]]
+
+Select all the code and do ctrl-G (or select ''do it and go'' from the contextual menu).
+This will generate the following Arduino code :
+
+[[[language=arduino
+int button = 9;
+int led = 12;
+void setup(){
+	pinMode(button, INPUT);
+	pinMode(led, OUTPUT);
+}
+void state_offline(){
+	digitalWrite(led, LOW);
+	if (digitalRead(button) == HIGH) {state_offline();} else {state_online();}
+}
+void state_online(){
+	digitalWrite(led, HIGH);
+	if (digitalRead(button) == LOW) {state_online();} else {state_offline();}
+}
+void loop(){
+	state_offline();
+}
+]]]
 
