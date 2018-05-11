@@ -14,8 +14,8 @@ ArduinoML is composed of two distincts parts: ''structural concerns'' that repre
 Structural concerns appears in orange and behaviorial concerns in green in the following figure.
 +ArduinoML meta-model>figures/ArduinoML.jpg|width=60|label=arduinoml+
 
-
-There are many implementations of ArduinoML in various programming languages (Java, Python, ...) or workbenches (MPS, XText, ...). *Pharo version of Arduino>https://github.com/mosser/ArduinoML-kernel/tree/master/embeddeds/pharo* has been done by Serge Stinckwich. In order to load, ArduinoML support for Pharo, please execute the following code snippet in a fresh Pharo 6.1 image :
+There are many implementations of ArduinoML in various programming languages (Java, Python, ...) or workbenches (MPS, XText, ...). *Pharo version of Arduino>https://github.com/mosser/ArduinoML-kernel/tree/master/embeddeds/pharo* has been done by Serge Stinckwich and this based on an embdedded domain-specific language.
+In order to load, ArduinoML support for Pharo, please execute the following code snippet in a fresh Pharo 6.1 image :
 
 [[[language=smalltalk
 Metacello new
@@ -26,11 +26,16 @@ Metacello new
 
 Arduino's Pharo version is composed of three parts: classes that represent the meta-model entities, an embedded domain-specific language that allows you to build Arduino programs (see chapter 2) and finally a Wiring code generator (see chapter 3).
 
-We represent the meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class. We use AML (ArduinoML) as a prefix for all classes in order to avoid class clashes with other Pharo classes.
-
+We represent the meta-model as a set of classes in Pharo. Each class XXX of the UML diagram is represented as an AMLXXX Pharo class. We use AML (ArduinoML) as a prefix for all classes in order to avoid class names clashes with other Pharo classes.
 
 This is a complete example of generating Wiring code for a specific Arduino application.
-Open a Pharo Playground and type: 
+
+We want to built an application with a push button connected to the pin 9 on the Arduino board and a led connected to the pin number 12.
+Every time, we press the push button, the led will change his state from on to off and vice-versa.
+We can describe this application with an automata with two states: #online and #offline and transitions
+In the state #online, the led with be switch on (#HIGH) and in the sate #offline, the LED will be switch off (#LOW).
+
+This application can be describe very easily with the DSL provided Open a Pharo Playground and type:
 [[[language=smalltalk
 | myApp result |
 myApp := #myApp arduinoApp
