@@ -11,7 +11,8 @@ ArduinoML is composed of two distincts parts: ''structural concerns'' that repre
 - ==Sensor== represent Arduino sensors like a button. A sensor has a name and is bound to a pin.
 - ==Actuator== represent Arduino actuators like a led. An actuator has a name and is bound to a pin.
 
-Structural concerns appears in orange and behaviorial concerns in green in the following figure.
+Str
+uctural concerns appears in orange and behaviorial concerns in green in the following figure.
 +ArduinoML meta-model>figures/ArduinoML.jpg|width=60|label=arduinoml+
 
 There are many implementations of ArduinoML in various programming languages (Java, Python, ...) or workbenches (MPS, XText, ...). *Pharo version of Arduino>https://github.com/mosser/ArduinoML-kernel/tree/master/embeddeds/pharo* has been done by Serge Stinckwich and this based on an embdedded domain-specific language.

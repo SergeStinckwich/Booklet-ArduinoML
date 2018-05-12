@@ -1,7 +1,7 @@
 !!! Concrete Syntax
-In order to simplify our task, we decide to build an embedded DSL instead of building a whole Parser.
+In order to simplify our task, we decide to build an embedded DSL instead of building a whole parser with a parser framework like PetitParser.
 
-We reuse as much as possible the facilities provide by Pharo (like dynamic arrays and class extensions), in order to build a declarative API. The template to build an ArduinoML program is as follows.
+We reuse as much as possible the facilities provided by Pharo (like dynamic arrays and class extensions), in order to build a declarative API. The template to build an ArduinoML program is as follows.
 
 [[[language=smalltalk
 #youAppName arduinoApp
