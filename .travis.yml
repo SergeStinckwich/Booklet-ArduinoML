@@ -3,23 +3,15 @@ services:
 - docker
 before_install:
 - docker pull dpollet/texlive:pillar
-script: |
-  docker run --tty --rm --volume $PWD:/work dpollet/texlive:pillar bash -c "\
-    wget --quiet --output-document=- 'https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh' | bash \
-    && make spiralbook "
+script:
+- docker run --tty --rm --volume $PWD:/work dpollet/texlive:pillar bash -c "make spiralbook"
 deploy:
-- provider: bintray
-  file: ".bintray.json"
-  on:
-    repo: SergeStinckwich/Booklet-ArduinoML
-  skip_cleanup: true
-  user: sergestinckwich
-  key:
+  provider: releases
+  api_key:
     secure: IIab640B0X3Z2JqRFLcK8v2B9MNuE61J3SoJh/ix2APEu7nFNp7FrsWBpNR+NMGvih9aT6RxRSz2W4WmUm1Tw/K2BAqoXG1Bztm8/Mvg7hQQnqAVNFPXSQSyk/eqtCJA7eSWhnweXUr0d21J6CzO6lkYJbXUXFGwgqESWp8PwYbbys5sN2YMPaB9Q7XbdFff5O/q9SAO5SOQrmxA2pzonGPN8n7Np08AXx532J8ZNuLifaWBS1VBMcMo31ySGyu8lh0qQcbfilePZx2GqXIQiB+X7YkpORFT4IULS2xHpc3Dz3lzpBsPvsK69qEugJMF8n5oL1RN0UCpqCzzKPP2VyTPg/qrOodKwHgPjnk7xonLXniJj02C0avFXb+jbuMwBgTfS1OdQnzzZvvfT3mtL2/lQYvLioIp9knRQK5AqnVvF0O0sxW1B1LM8vk3wxlFSrHNlwCHrZe4N/9m0M9eVHXmMjbRUIg1FKN+8ynXab1wAztMojmBIbg3qcc3rbEbaPQn2mg5bdTBM801yd10n4ZtyNLc3KuzxI13eVuY8aY2PDn7wsjFC8wkyi4FoFP18m9FD7E42IYzp4KlhspqSda/HkngF77J0S3RBYV3SqU0k0e2CmR3f31A27SioV/OryheS+5TYzYjp5N81WCNlJJ/yDakUrpflQUk+3SD/o4=
-- provider: releases
-  file: build/book.spiral.pdf
-  on:
-    tags: true
-  skip_cleanup: true
+    file: build/build.spiral.pdf
+    skip_cleanup: true
+    on:
+      repo: SergeStinckwich/Booklet-ArduinoML
 
 
